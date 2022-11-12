@@ -22,7 +22,7 @@ function mayoriaDeEdad(edad) {
     return 'Allowed'
   }else{
     return 'Not allowed'
-  }
+  } 
 }
   
 function conection(status) {
@@ -127,7 +127,7 @@ function fizzBuzz(numero) {
   // Si "numero" es divisible entre 5, devuelve "buzz"
   // Si "numero" es divisible entre 3 y 5 (ambos), devuelve "fizzbuzz"
   // De lo contrario, devuelve el numero
-  if(numero % 15 === 0) return 'fizzbuzz';
+  if(numero % 3 === 0 && numero % 5 === 0) return 'fizzbuzz';
   if(numero % 3 === 0) return 'fizz';
   if(numero % 5 === 0) return 'buzz';
   return numero;
@@ -151,7 +151,7 @@ function operadoresLogicos(num1, num2, num3) {
     return 'Número 1 es mayor y positivo'
   }else{
     return  false
-  }
+  } 
 }
   
 
@@ -189,7 +189,7 @@ function tablaDelSeis(){
   //La función devuelve un array con los resultados de la tabla de multiplicar del 6 en orden creciente.
   //Escribe tu código aquí   
   let tabla = []
-  for (let i=0; i<11; i++){
+  for (let i=0; i<=10; i++){
     tabla.push(i*6)
   } 
   return tabla
@@ -210,7 +210,6 @@ function doWhile(numero) {
   //Retornar el valor final.
   //Usar el bucle do ... while.
   var i = 0
-  var a = numero
   do{
     i = i + 1
     numero = numero + 5
