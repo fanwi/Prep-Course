@@ -1,0 +1,23 @@
+body{
+    background-image: url("https://hdwallpaperim.com/wp-content/uploads/2017/08/22/83791-Nichijou-Powerlevel.jpg");
+}
+
+.titulazo {
+    font-size: 50px;
+    color: slategrey;
+}
+
+.subtitulo{
+    font-size: 30px;
+    color: gray;
+}
+ul span{
+    font-size: 20px;
+    height: 20px;
+}
+
+ul li{
+    font-size: 18px;
+    color: back;
+    border: 20px
+}
