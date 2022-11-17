@@ -10,28 +10,29 @@ function deObjetoAmatriz(objeto){
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
-  let array = []
-    for (x in objeto){ //por cada propiedad en objeto
-      array.push([x, objeto[x]]) //pusheamos, 'propiedad, valor' (elemento, objeto[elemento] (el valor))
-    }
-    return array
-  }
+ var arreglo = [] //declaramos la variable del array a devolver
+ for (clave in objeto){ //para cada clave en objeto
+  arreglo.push([clave, objeto[clave]]) //pusheamos de a 2, primero la el nombre de la clave, y luego el valor que devuelve ej ('D', objeto.D (1))
+ }
+ return arreglo
+}
+  
 
 
 function numberOfCharacters(string) {
   //La función recibe un string. Recorre el srting y devuelve el caracter con el número de veces que aparece 
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
-  //Escribe tu código aquí
-  let arrayletras = string.split('')
-   //el bucle va a pasar por todos los elementos del array, si letras[e] = 0, significa que era su primera aparición,
-   //entonces le sumo 1, letra[e] = 1 ahora.
-   //si letras[e] existe, significa que ya estaba, entonces, le sumo + 1 y lo que ya tenía, letras = letras + 1
-  let letras = {}
-  arrayletras.forEach(function(elemento, indice){ 
-    letras[elemento] = ( letras[elemento] || 0 ) + 1; 
-  })
-  return letras
+  //Escribe tu código aquí //una key cuyo value sea la cantidad de apariciones> d: 5
+  var total= {}
+  for (let i = 0; i < string.length; i++) {
+    total[string[i]] = (total[string[i]] || 0) + 1 
+    // ejemplo> total["a"] = 0 + 1 (si es falso, o sea si no tenia valor asignado)
+    //          total["a"] = total["a"] + 1 (o sea el valor que ya tenía, mas 1) si da verdadero, o sea que alberga un valor
+    //                       que no sea 0, 1 por ejemplo, entonces si a: 1, ahora a:2
+    //                       es basicamente un a = a+1 o a+=1, pero con el ||
+    }
+    return total
 }
 
 
@@ -40,25 +41,18 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
-  let letras = s.split('')
-  let mayusculas = []
-  let minusculas = []
-
-  for(let i = 0; i<letras.length;i++){
-    if(letras[i] === (letras[i]).toUpperCase()){
-      mayusculas.push(letras[i])
-      //si la letra, es igual a la letra en mayuscula, o sea, que sea mayuscula: 
-      //la agregamos en letras mayusculas
-     
+  var mayus = ''
+  var minus = ''
+  for (var i = 0; i<s.length; i++){
+    if(s[i] === s[i].toUpperCase()){
+      mayus += s[i]
     }else{
-      minusculas.push(letras[i])    
-     //si la letra no es igual a la misma letra en mayuscula, o sea es minuscula:
-     //la agregamos en letras minusculas
+      minus += s[i]
     }
-  } mayusculas = mayusculas.join('') //unimos todas las letras mayusculas en un solo string
-    minusculas = minusculas.join('') //unimos todas las letras minusculas en un solo stirng.
-    return mayusculas + minusculas //unimos las mayusculas primero y luego las minusculas.
+  }
+  return mayus+minus
 }
+  
 
 function asAmirror(str) {
   //La función recibe una frase. 
@@ -66,13 +60,20 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
-  let split = str.split(' ') //acá separamos la frase en palabras
-  let mirror = split.map(function(elemento){
-    return elemento.split('').reverse().join(''); 
-    //por cada palabra, la separamos en letras, la hacemos reversa, y la unimos otra vez.
-  }).join(' ')
-  //unimos todas las palabras que hicimos en reversa.
-  return mirror
+  
+  // separamos el string por cada espacio que tiene (lo separamos en palabras) y lo recorremos con .map
+  var espejo = str.split(' ').map(function(elemento){
+
+  // a cada palabra, o elemento, la separamos en letras, las ponemos al revés y las volvemos a unir
+  // asi que tendriamos un array de palabras ordenadas, cuyas letras estan invertidas
+    return elemento.split('').reverse().join('') 
+  
+  // el nuevo array de palabras con letrsa invertidas estas separado como elementos, asi que los hacemos
+  // un solo string, y usamos de separador a un espacio, el cual irá entre elemento(palabra)
+  }).join(' ') 
+  return espejo
+  
+  
 
 } 
 
@@ -82,14 +83,13 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
-  let split = numero.toString().split('').reverse().join('')
-  //aca pasamos el numero a string, luego lo dividimos, lo pusimos en reversa, y lo conectamos
-  //ejemplo, 123 > 1, 2, 3> 3, 2, 1> 321
-  //si el numero es capicua, o sea que al voltearlo se lee igual, es capicua, sino, retornamos que no.
-  if(numero == split){
-    return 'Es capicua'
-  } return 'No es capicua'
 
+  // si numero es === a numero hecho string>spliteado>puesto en reversa>hecho un solo string. todo eso pasado a entero, es capicua
+  if(numero === parseInt(numero.toString().split('').reverse().join(''))){
+    return 'Es capicua'
+  }else{
+    return 'No es capicua'
+  }
 }
 
 
@@ -97,14 +97,13 @@ function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
-  let cadena2 = ''
-  for (let i = 0; i<cadena.length; i++){
-    if(cadena[i] === 'a' || cadena[i] === 'b' || cadena[i] === 'c' ){
-      cadena2 += ''
-    }else{
-      cadena2 += cadena[i]
+  var cadenamodificada = ''
+  for (let i = 0; i < cadena.length; i++) {
+    if(cadena[i] !== 'a' && cadena[i] !== 'b' && cadena[i] !== 'c'){
+      cadenamodificada += cadena[i]
     }
-  } return cadena2
+  }
+  return cadenamodificada
 }
 
 
@@ -113,14 +112,22 @@ function sortArray(arr) {
   //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
   function comparacion(a, b){
-  return a.length-b.length
-  //si devuelve -1, a se va a situar en una posicion menor que b
-  //si devuelve 0, se quedan como estan
-  //si devuelve 1, b se va a situar en una posicion menor que a 
+    return a.length - b.length
+  // funcion que va a comparar el largo de dos strings
+  // puede tener 3 valores restando el primero con el que le sigue
+  // que sea menor a 0, lo que indica que el valor 'a' es menos largo
+  // que sea igual a 0, lo que indica que tienen el mismo largo
+  // que sea mayor a 0, lo que indica que el valor 'a' es mas largo
   }
-  let array = arr.sort(comparacion)
-  return array
-
+  
+  let arrayordenado = arr.sort(comparacion)
+  //.sort es un metodo que recorre y ordena el array.
+  // le pasamos como callback una funcion comparadora que devuelve 3 tipos de valores, menor a 0, 0 y 1
+  // entonces compara los valores del array en base a esta funcion comparadora
+  return arrayordenado
+  //si comparacion es menor que 0, se sitúa a en un indice menor que b. Es decir, a viene primero
+  //si retorna 0, se deja a y b sin cambios entre ellos, pero ordenados con respecto a todos los elementos diferentes
+  //si es mayor que 0, se sitúa b en un indice menor que a
 }
 
 function buscoInterseccion(arreglo1, arreglo2){
@@ -129,15 +136,15 @@ function buscoInterseccion(arreglo1, arreglo2){
   //Si no tienen elementos en común, retornar un arreglo vacío.
   //Aclaración: los arreglos no necesariamente tienen la misma longitud
   //Escribe tu código aquí  
-  let arreglo = []
-  arreglo1.map(function(elemento){
-    for(let i=0; i<arreglo2.length; i++){
-      if(elemento === arreglo2[i]){
-        arreglo.push(elemento)
+  var interseccion = []
+  for (let i = 0; i < arreglo1.length; i++) {
+    for(let j = 0; j< arreglo2.length; j++){
+      if(arreglo1[i] === arreglo2[j]){
+        interseccion.push(arreglo1[i])
       }
     }
-  })
-  return arreglo
+  }
+  return interseccion
 }
 
 
